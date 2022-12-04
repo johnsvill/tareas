@@ -1,0 +1,51 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Registro";
+
+}
+
+<h1>Login</h1>
+
+@if (ViewData.Keys.Contains("Mensaje"))
+{
+    <p style="color:red">
+        @ViewData["Mensaje"];
+    </p>
+}
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="@Model.Email" class="form-label"></label>
+                <input asp-for="@Model.Email" autocomplete="off" class="form-control" />
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="@Model.Password" class="form-label"></label>
+                <input asp-for="@Model.Password" class="form-control" />
+                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+            </div>
+
+             <div class="form-check mb-3">
+                <label asp-for="@Model.Recuerdame" class="form-label"></label>
+                <input type="checkbox" asp-for="@Model.Recuerdame" class="form-check-input" />
+                <span asp-validation-for="@Model.Recuerdame" class="text-danger"></span>
+            </div>
+
+            <button class="btn-primary btn">Login</button>
+            <a class="btn btn-success" asp-action="Registro">Crear cuenta nueva</a>
+
+            <a class="btn btn-success" asp-action="LoginExterno" asp-route-proveedor="Microsoft">
+                Continuar con Microsoft
+            </a>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
